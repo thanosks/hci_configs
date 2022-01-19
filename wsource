@@ -1,18 +1,16 @@
 #!/bin/sh
 #
-# AUTHOR: Harrison Lake (Charalampos Makrylakis)
+# AUTHOR: Thanosks
 #
-# DATE: 27 February 2001
-#
-# DESC: Elvi to search Wikisource
-# elvis: wsource		-- Search Wikisource (www.wikisource.org)
+# DESC: Elvi to search Gsmarena
+# elvis: gsm		-- Search GSMarena (www.gsmarena.com)
 . surfraw || exit 1
 
 w3_usage_hook () {
     cat <<EOF
 Usage: $w3_argv0 [options] [search words]...
 Description:
-  Search Wikisource (www.wikisource.org) for texts 
+  Search GSMarena (www.gsmarena.com) for texts 
 EOF
     w3_global_usage
 }
@@ -20,8 +18,8 @@ EOF
 w3_config
 w3_parse_args "$@"
 if test -z "$w3_args"; then
-    w3_browse_url "https://www.wikisource.org"
+    w3_browse_url "https://www.gsmarena.com/"
 else
     escaped_args=`w3_url_of_arg $w3_args`
-    w3_browse_url "https://wikisource.org/w/index.php?search=${escaped_args}"
+    w3_browse_url "https://www.gsmarena.com/res.php3?sSearch=${escaped_args}"
 fi
