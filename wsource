@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# AUTHOR: Harrison Lake (Charalampos Makrylakis)
+#
+# DATE: 27 February 2001
+#
+# DESC: Elvi to search Wikisource
+# elvis: wsource		-- Search Wikisource (www.wikisource.org)
+. surfraw || exit 1
+
+w3_usage_hook () {
+    cat <<EOF
+Usage: $w3_argv0 [options] [search words]...
+Description:
+  Search Wikisource (www.wikisource.org) for texts 
+EOF
+    w3_global_usage
+}
+
+w3_config
+w3_parse_args "$@"
+if test -z "$w3_args"; then
+    w3_browse_url "https://www.wikisource.org"
+else
+    escaped_args=`w3_url_of_arg $w3_args`
+    w3_browse_url "https://wikisource.org/w/index.php?search=${escaped_args}"
+fi
